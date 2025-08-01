@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Indo Entertainment & Commerce Platform - Premium Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow: hidden;
+            font-weight: 400;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 60px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: radial-gradient(ellipse at top, rgba(26, 26, 46, 0.3) 0%, transparent 50%);
+        }
+
+        .slide.active {
+            display: flex;
+            animation: slideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.98);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .slide h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .slide h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+        }
+
+        .slide h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 1.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(102, 126, 234, 0.4);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            margin: 3rem 0;
+        }
+
+        .team-showcase {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #667eea;
+            border-radius: 0 16px 16px 0;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .timeline-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-left-color: #f093fb;
+            transform: translateX(10px);
+        }
+
+        .timeline-date {
+            color: #667eea;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .bullet-points {
+            text-align: left;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 100%;
+            color: #e2e8f0;
+        }
+
+        .bullet-points li {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .bullet-points li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(240, 147, 251, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .highlight-box:hover::before {
+            opacity: 1;
+        }
+
+        .big-number {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin: 1rem 0;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn:hover {
+            background: rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 3rem;
+            right: 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            z-index: 1000;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            transition: width 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+        }
+
+        /* 파티클 배경 효과 */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* 모바일 최적화 */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 1.5rem 1rem;
+            }
+            
+            .slide h1 {
+                font-size: 2.2rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.2;
+            }
+            
+            .slide h2 {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+                line-height: 1.3;
+            }
+            
+            .slide h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                line-height: 1.5;
+            }
+            
+            .glass-card, .stat-card, .team-card {
+                padding: 1.5rem;
+                margin: 1rem 0;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+                margin: 1.5rem 0;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .team-showcase {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            
+            .navigation {
+                bottom: 1.5rem;
+                flex-direction: row;
+                gap: 0.8rem;
+                padding: 0 1rem;
+            }
+            
+            .nav-btn {
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
+                min-width: 80px;
+                border-radius: 25px;
+            }
+            
+            .slide-counter {
+                top: 1.5rem;
+                right: 1.5rem;
+                padding: 0.8rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .bullet-points {
+                font-size: 1rem;
+                line-height: 1.6;
+                padding: 0;
+            }
+
+            .bullet-points li {
+                margin: 0.8rem 0;
+                padding-left: 1.5rem;
+            }
+
+            .big-number {
+                font-size: 2.5rem;
+                margin: 0.8rem 0;
+            }
+
+            .stat-number {
+                font-size: 2.2rem;
+            }
+
+            .timeline-item {
+                padding: 1.2rem 1.5rem;
+                margin: 1rem 0;
+                font-size: 0.95rem;
+            }
+
+            .timeline-date {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .highlight-box {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+
+            .highlight-box h3 {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
+
+            .highlight-box p {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide {
+                padding: 1rem 0.8rem;
+            }
+            
+            .slide h1 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+            
+            .slide h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .slide h3 {
+                font-size: 1.1rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .glass-card, .stat-card, .team-card {
+                padding: 1.2rem;
+                margin: 0.8rem 0;
+            }
+            
+            .stats-grid {
+                gap: 1rem;
+                margin: 1rem 0;
+            }
+            
+            .navigation {
+                bottom: 1rem;
+                gap: 0.5rem;
+                padding: 0 0.5rem;
+            }
+            
+            .nav-btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.8rem;
+                min-width: 70px;
+            }
+            
+            .slide-counter {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .big-number {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .bullet-points {
+                font-size: 0.9rem;
+            }
+
+            .bullet-points li {
+                margin: 0.6rem 0;
+                padding-left: 1.2rem;
+            }
+
+            .timeline-item {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .timeline-date {
+                font-size: 0.9rem;
+            }
+
+            .highlight-box {
+                padding: 1.2rem;
+            }
+
+            .highlight-box h3 {
+                font-size: 1.2rem;
+            }
+
+            .highlight-box p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .slide {
+                padding: 0.8rem 0.5rem;
+            }
+            
+            .slide h1 {
+                font-size: 1.6rem;
+            }
+            
+            .slide h2 {
+                font-size: 1.4rem;
+            }
+            
+            .glass-card, .stat-card, .team-card {
+                padding: 1rem;
+            }
+            
+            .nav-btn {
+                padding: 0.7rem 1rem;
+                font-size: 0.75rem;
+                min-width: 60px;
+            }
+            
+            .big-number {
+                font-size: 1.8rem;
+            }
+            
+            .stat-number {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* 어드벤스드 효과들 */
+        .glow-text {
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .slide-content {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- 파티클 배경 -->
+        <div class="particles" id="particles"></div>
+
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">12</span>
+        </div>
+        
+        <div class="progress-bar" id="progress-bar"></div>
+
+        <!-- 슬라이드 1: 타이틀 -->
+        <div class="slide active">
+            <div class="slide-content">
+                <h1 class="glow-text floating">K-Indo Entertainment & Commerce Platform</h1>
+                <p class="subtitle">인도네시아 K-한류 기반 엔터테인먼트 & 커머스 플랫폼</p>
+                <div class="glass-card">
+                    <h3>🚀 2025년 10월 투자유치 제안서</h3>
+                    <p style="font-size: 1.5rem; margin-top: 1.5rem; color: #f093fb; font-weight: 600;">
+                        시리즈 A 투자 목표: <span class="big-number" style="font-size: 2.5rem; display: inline;">50억원</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 2: Executive Summary -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Executive Summary</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">2.7억</span>
+                        <h3>인도네시아 인구</h3>
+                        <p style="color: #94a3b8;">세계 4위 인구 대국</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">$52B</span>
+                        <h3>이커머스 시장</h3>
+                        <p style="color: #94a3b8;">동남아 최대 규모</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">15%</span>
+                        <h3>연평균 성장률</h3>
+                        <p style="color: #94a3b8;">폭발적 성장 중</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">2,500만</span>
+                        <h3>K-Pop 팬</h3>
+                        <p style="color: #94a3b8;">열광적인 한류 팬층</p>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h3 style="color: #f093fb;">🎯 비전</h3>
+                    <p style="font-size: 1.3rem; line-height: 1.6;">K-한류를 기반으로 한 인도네시아 최대 규모의<br><strong>엔터테인먼트 & 커머스 통합 플랫폼</strong> 구축</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 3: 사업 개요 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>핵심 사업 영역</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎪</div>
+                        <h3>K-Pop 아카데미</h3>
+                        <div class="bullet-points" style="text-align: center; color: #cbd5e1;">
+                            <p>아이돌 트레이닝 프로그램</p>
+                            <p>글로벌 오디션 시스템</p>
+                            <p>현지 아티스트 발굴 & 육성</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🛒</div>
+                        <h3>인플루언서 커머스</h3>
+                        <div class="bullet-points" style="text-align: center; color: #cbd5e1;">
+                            <p>현지 인플루언서 매칭</p>
+                            <p>라이브커머스 솔루션</p>
+                            <p>한국 상품 현지화</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎬</div>
+                        <h3>엔터테인먼트 콘텐츠</h3>
+                        <div class="bullet-points" style="text-align: center; color: #cbd5e1;">
+                            <p>K-Pop 콘텐츠 제작</p>
+                            <p>현지 아티스트 프로모션</p>
+                            <p>팬클럽 커뮤니티 운영</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 4: 시장 기회 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>인도네시아 시장 기회</h2>
+                <div class="two-column">
+                    <div class="glass-card">
+                        <h3 style="color: #f093fb;">🔥 K-한류 열풍</h3>
+                        <ul class="bullet-points">
+                            <li><strong style="color: #667eea;">2,500만명</strong> K-Pop 팬</li>
+                            <li><strong>연 15%</strong> 한국 화장품 수입 성장</li>
+                            <li><strong>연 22%</strong> 한국 식품 수입 성장</li>
+                            <li><strong>동남아 1위</strong> K-드라마 시청률</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card">
+                        <h3 style="color: #764ba2;">💡 시장 특성</h3>
+                        <ul class="bullet-points">
+                            <li><strong>평균 연령 29세</strong> 젊은 인구 구조</li>
+                            <li><strong>높은 소셜미디어</strong> 참여도</li>
+                            <li><strong>모바일 우선</strong> 소비 패턴</li>
+                            <li><strong>인플루언서 마케팅</strong> 효과 극대</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h3>🎯 우리의 기회</h3>
+                    <p style="font-size: 1.2rem;">할랄 문화에 대한 깊은 이해 + 현지 전문가 네트워크 = <strong style="color: #f093fb;">완벽한 시장 진입 조건</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 5: 수익 모델 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>다각화된 수익 모델</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3 style="color: #667eea;">커머스 수수료</h3>
+                        <span class="big-number">3-5%</span>
+                        <p style="color: #94a3b8;">거래액 기반 플랫폼 수수료<br>인플루언서 매칭 수수료</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 style="color: #764ba2;">교육 사업</h3>
+                        <div style="font-size: 3rem; margin: 1rem 0;">💰</div>
+                        <p style="color: #94a3b8;">K-Pop 아카데미 수강료<br>오디션 참가비<br>멘토링 프로그램</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 style="color: #f093fb;">광고 & 마케팅</h3>
+                        <div style="font-size: 3rem; margin: 1rem 0;">📢</div>
+                        <p style="color: #94a3b8;">브랜드 광고 수익<br>캠페인 수수료<br>데이터 인사이트 판매</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 style="color: #667eea;">엔터테인먼트</h3>
+                        <div style="font-size: 3rem; margin: 1rem 0;">🎵</div>
+                        <p style="color: #94a3b8;">아티스트 매니지먼트<br>콘텐츠 라이선스<br>이벤트 & 공연</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 6: 기술 플랫폼 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>혁신적인 기술 플랫폼</h2>
+                <div class="two-column">
+                    <div class="glass-card">
+                        <h3 style="color: #f093fb;">🤖 AI 매칭 엔진</h3>
+                        <ul class="bullet-points">
+                            <li><strong>인플루언서-브랜드</strong> 최적 매칭</li>
+                            <li><strong>실시간 트렌드</strong> 분석</li>
+                            <li><strong>개인화 추천</strong> 시스템</li>
+                            <li><strong>소비자 행동</strong> 예측 분석</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card">
+                        <h3 style="color: #667eea;">📱 라이브커머스 2.0</h3>
+                        <ul class="bullet-points">
+                            <li><strong>4K 실시간</strong> 스트리밍</li>
+                            <li><strong>인터랙티브</strong> 쇼핑 기능</li>
+                            <li><strong>글로벌 결제</strong> 시스템</li>
+                            <li><strong>AR/VR</strong> 체험 기능</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h3>🚀 기술적 우위</h3>
+                    <p style="font-size: 1.3rem;">기존 인플루언서 플랫폼의 <strong style="color: #f093fb;">검증된 기술력</strong> + 차세대 AI 혁신 = <strong>압도적 경쟁력</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 7: 재무 계획 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>투자 계획 & 매출 전망</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">50억원</span>
+                        <h3>시리즈 A 투자 목표</h3>
+                        <p style="color: #94a3b8;">18개월 런웨이</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">15%</span>
+                        <h3>지분 제공</h3>
+                        <p style="color: #94a3b8;">공정한 밸류에이션</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">3년</span>
+                        <h3>투자 회수 목표</h3>
+                        <p style="color: #94a3b8;">IPO or M&A</p>
+                    </div>
+                </div>
+                <div class="two-column">
+                    <div class="glass-card">
+                        <h3 style="color: #f093fb;">📈 3년 매출 전망</h3>
+                        <div class="timeline-item">
+                            <div class="timeline-date">1년차</div>
+                            <strong style="color: #667eea; font-size: 1.5rem;">30억원</strong>
+                            <p>커머스 20억 + 교육 7억 + 광고 3억</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2년차</div>
+                            <strong style="color: #764ba2; font-size: 1.5rem;">150억원</strong>
+                            <p>5배 성장, 시장 점유율 확대</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">3년차</div>
+                            <strong style="color: #f093fb; font-size: 1.5rem;">500억원</strong>
+                            <p>흑자 전환, 동남아 확장</p>
+                        </div>
+                    </div>
+                    <div class="glass-card">
+                        <h3 style="color: #667eea;">💰 자금 사용 계획</h3>
+                        <ul class="bullet-points">
+                            <li><strong style="color: #f093fb;">40%</strong> - 기술 개발 (AI, 플랫폼)</li>
+                            <li><strong style="color: #764ba2;">30%</strong> - 마케팅 & 인플루언서 확보</li>
+                            <li><strong style="color: #667eea;">20%</strong> - 인건비 & 운영비</li>
+                            <li><strong style="color: #94a3b8;">10%</strong> - 예비자금 & 기회 투자</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 8: 로드맵 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>실행 로드맵</h2>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025년 Q4</div>
+                    <h3 style="color: #f093fb;">🏗️ 사업 기반 구축</h3>
+                    <p>투자 유치 완료 → 인도네시아 법인 설립 → 핵심 팀 구성 → 현지 파트너십 체결</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026년 Q1</div>
+                    <h3 style="color: #667eea;">🔧 플랫폼 개발</h3>
+                    <p>MVP 플랫폼 완료 → 베타 테스트 → 인플루언서 100명 확보 → 파일럿 브랜드 5개사</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026년 Q2</div>
+                    <h3 style="color: #764ba2;">🚀 정식 런칭</h3>
+                    <p>공식 플랫폼 오픈 → K-Pop 아카데미 1호점 → 현지 마케팅 캠페인 → 첫 오디션 개최</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026년 Q3-Q4</div>
+                    <h3 style="color: #f093fb;">📈 시장 확장</h3>
+                    <p>인플루언서 1,000명 → 브랜드 50개사 → 첫 데뷔 아티스트 → 월 거래액 10억원</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2027년</div>
+                    <h3 style="color: #667eea;">👑 시장 리더십</h3>
+                    <p>인도네시아 1위 플랫폼 → 시리즈 B 투자 → 동남아 확장 → 유명 K-Pop 아이돌 영입</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 9: 팀 소개 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>핵심 팀: 완벽한 트라이앵글</h2>
+                <div class="team-showcase">
+                    <div class="team-card">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">🎯</div>
+                        <h3 style="color: #f093fb;">플랫폼 전문가</h3>
+                        <p style="margin: 1rem 0; font-weight: 600; color: #667eea;">CEO 후보</p>
+                        <ul class="bullet-points" style="font-size: 0.95rem;">
+                            <li>마케팅 10년 경력</li>
+                            <li>개발 & 데이터 분석</li>
+                            <li>생성형 AI 전문가</li>
+                            <li>기존 플랫폼 운영</li>
+                        </ul>
+                    </div>
+                    <div class="team-card">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">🎬</div>
+                        <h3 style="color: #764ba2;">엔터테인먼트 전문가</h3>
+                        <p style="margin: 1rem 0; font-weight: 600; color: #667eea;">CBO</p>
+                        <ul class="bullet-points" style="font-size: 0.95rem;">
+                            <li>국내 유명 엔터 대표</li>
+                            <li>K-Pop 산업 전문</li>
+                            <li>아티스트 발굴/육성</li>
+                            <li>글로벌 네트워크</li>
+                        </ul>
+                    </div>
+                    <div class="team-card">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">🌏</div>
+                        <h3 style="color: #667eea;">현지 전문가</h3>
+                        <p style="margin: 1rem 0; font-weight: 600; color: #667eea;">COO</p>
+                        <ul class="bullet-points" style="font-size: 0.95rem;">
+                            <li>인도네시아 주재원 7년</li>
+                            <li>한국 공무원 20년</li>
+                            <li>MCN 회사 운영</li>
+                            <li>현지 규제/문화 전문</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h3 style="color: #f093fb;">🏆 팀의 시너지</h3>
+                    <p style="font-size: 1.2rem;">기술 × 엔터테인먼트 × 현지 전문성 = <strong>무적의 황금 삼각형</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 10: 경쟁 우위 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>압도적 경쟁 우위</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🔥</div>
+                        <h3 style="color: #f093fb;">완벽한 시너지</h3>
+                        <p>기술 × 엔터 × 현지 전문성의<br><strong>황금 삼각형</strong></p>
+                    </div>
+                    <div class="stat-card">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                        <h3 style="color: #764ba2;">검증된 실행력</h3>
+                        <p>각자 분야에서<br><strong>10년+ 실전 경험</strong></p>
+                    </div>
+                    <div class="stat-card">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🌐</div>
+                        <h3 style="color: #667eea;">현지 네트워크</h3>
+                        <p>인도네시아 현지의<br><strong>깊은 인맥과 이해</strong></p>
+                    </div>
+                    <div class="stat-card">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
+                        <h3 style="color: #f093fb;">기술적 우위</h3>
+                        <p>기존 플랫폼의<br><strong>검증된 기술력</strong></p>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h3 style="color: #667eea;">💡 핵심 차별화</h3>
+                    <p style="font-size: 1.3rem; line-height: 1.6;">
+                        <strong style="color: #f093fb;">할랄 인증 상품 큐레이션</strong> + 
+                        <strong style="color: #764ba2;">AI 기반 매칭</strong> + 
+                        <strong style="color: #667eea;">K-Pop 아카데미 연계</strong>
+                        <br><br>
+                        = 복제 불가능한 <strong>유니크한 플랫폼</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 11: 투자 하이라이트 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>투자 하이라이트</h2>
+                <div class="two-column">
+                    <div class="glass-card">
+                        <h3 style="color: #f093fb;">🎯 왜 지금인가?</h3>
+                        <ul class="bullet-points">
+                            <li><strong>K-한류 절정기</strong><br>인도네시아 K-Pop 팬 2,500만명</li>
+                            <li><strong>이커머스 급성장</strong><br>연 15% 성장하는 거대 시장</li>
+                            <li><strong>완벽한 팀 확보</strong><br>기술/엔터/현지 전문가</li>
+                            <li><strong>검증된 모델</strong><br>국내 플랫폼 성공 경험</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card">
+                        <h3 style="color: #667eea;">💰 투자 수익성</h3>
+                        <div class="stat-card" style="margin: 2rem 0;">
+                            <span class="stat-number">3년</span>
+                            <p>투자 회수 목표</p>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">10배+</span>
+                            <p>예상 수익률 (ROI)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h3 style="color: #f093fb;">🚀 Exit 전략</h3>
+                    <p style="font-size: 1.3rem; line-height: 1.6;">
+                        <strong>3년 내 IPO</strong> 또는 <strong>전략적 인수합병</strong><br>
+                        (네이버, 카카오, 동남아 이커머스 기업 등)
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 12: Call to Action -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1 class="glow-text">함께 만들어갈 미래</h1>
+                <div class="glass-card">
+                    <h3 style="color: #f093fb; font-size: 2rem;">🌟 지금이 바로 그 순간입니다</h3>
+                    <p style="font-size: 1.4rem; line-height: 1.8; margin: 2rem 0; color: #e2e8f0;">
+                        K-한류의 글로벌 확산과 함께<br>
+                        인도네시아 <strong style="color: #667eea;">3억 인구 시장</strong>을 선점하고<br>
+                        엔터테인먼트와 커머스가 융합된<br>
+                        <strong style="color: #f093fb;">혁신적인 플랫폼</strong>을 구축합니다
+                    </p>
+                </div>
+                <div style="margin-top: 3rem; font-size: 2.5rem; font-weight: 800;">
+                    <span style="background: linear-gradient(135deg, #667eea 0%, #f093fb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        Let's Make History Together
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" onclick="previousSlide()">← 이전</button>
+            <button class="nav-btn" onclick="nextSlide()">다음 →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        // 파티클 생성
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            
+            document.getElementById('current-slide').textContent = index + 1;
+            
+            // Progress bar 업데이트
+            const progress = ((index + 1) / totalSlides) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // 키보드 네비게이션
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'F11') {
+                e.preventDefault();
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    document.documentElement.requestFullscreen();
+                }
+            }
+        });
+
+        // 터치 제스처 지원
+        let startX = 0;
+        let endX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            endX = e.changedTouches[0].clientX;
+            const deltaX = endX - startX;
+            
+            if (Math.abs(deltaX) > 50) {
+                if (deltaX > 0) {
+                    previousSlide();
+                } else {
+                    nextSlide();
+                }
+            }
+        });
+
+        // 초기화
+        window.addEventListener('load', function() {
+            createParticles();
+        });
+    </script>
+</body>
+</html>
